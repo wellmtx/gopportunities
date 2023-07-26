@@ -148,6 +148,32 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/openings": {
+            "get": {
+                "description": "List openings",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Openings"
+                ],
+                "summary": "List Openings",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ListOpeningResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -201,6 +227,20 @@ const docTemplate = `{
             "properties": {
                 "errorCode": {
                     "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.ListOpeningResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/schemas.OpeningResponse"
+                    }
                 },
                 "message": {
                     "type": "string"
